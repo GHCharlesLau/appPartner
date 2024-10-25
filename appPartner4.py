@@ -2,7 +2,7 @@
 """
 Created on Sun Sep 29 11:36:34 2024
 
-Condition 1: Readreceipt & Delayed Response
+Condition 2: No Readreceipt & Prompt Response
 
 @author: liuyu
 """
@@ -54,7 +54,7 @@ for message in st.session_state.messages[1:]:
         st.markdown(message["content"])
 
 
-delayT = random.randint(3, 20)  # randomize deplayed time interval
+delayT = random.randint(1, 3)  # randomize deplayed time interval
 
 # Accept user input and React to the user
 if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign the user's input to the prompt variable and checked if it's not None in the same line.
@@ -71,8 +71,8 @@ if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign
         with st.status("消息发送中...", expanded=True) as status:
             time.sleep(1)
             status.update(label="消息已送达", state="complete", expanded=True)
-            time.sleep(2)
-            status.update(label="已读 :white_check_mark:", state="complete", expanded=False)  # Set the readreceipt
+            # time.sleep(2)
+            # status.update(label="已读 :white_check_mark:", state="complete", expanded=False)  # Set the readreceipt
     st.session_state.messages.append({"role": "user", "content": prompt, "avatar": ":material/account_circle:"})  # Add user message to chat history
     
     time.sleep(delayT)  # waiting for response

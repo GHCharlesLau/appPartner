@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 
 # Streamed response emulator (generator function)
 def response_generator():
-    response = "对话结束，请返回继续作答问卷。"
+    response = "对话结束，请返回输入暗号继续作答问卷。暗号：52013141"
     for word in response.split():
         yield word + " "  # yield: produce a series of values over time, rather than computing them at once and sending them back like a list.
         time.sleep(0.001)
@@ -68,11 +68,13 @@ if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign
      
     col1, col2 = st.columns([3,1])  # split the container into two columns
     with col2:
-        with st.status("消息发送中...", expanded=True) as status:
-            time.sleep(1)
-            status.update(label="消息已送达", state="complete", expanded=True)
-            time.sleep(2)
-            status.update(label="已读 :white_check_mark:", state="complete", expanded=False)  # Set the readreceipt
+        time.sleep(3)
+        st.status(label="已读 :white_check_mark:", state="complete", expanded=False)
+        # with st.status("消息发送中...", expanded=True) as status:
+        #     time.sleep(1)
+        #     status.update(label="消息已送达", state="complete", expanded=True)
+        #     time.sleep(2)
+        #     status.update(label="已读 :white_check_mark:", state="complete", expanded=False)  # Set the readreceipt
     st.session_state.messages.append({"role": "user", "content": prompt, "avatar": ":material/account_circle:"})  # Add user message to chat history
     
     time.sleep(delayT)  # waiting for response

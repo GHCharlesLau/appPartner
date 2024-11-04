@@ -47,15 +47,15 @@ if "messages" not in st.session_state:  # added a check to see if the messages k
         {"role": "system", "content": "Your name is Li. You speak Chinese. You are a fictional romantic partner and you are going to plan a travelling plan with me. Your tone should not be that polite or passionate. Your sentences should not exceed three."}
         )
 
-delayTlist = [0, 1, 3]
-delayTlist.extend(range(5, 181, 5))
+delayTlist = [0, 1, 3, 5, 10, 15, 20, 25, 30, 40, 50, 60, 90, 120, 150, 180]
+# delayTlist.extend(range(5, 181, 5))
 delayTlist.reverse()  # Reverse the list to avoid performance decrease if using pop(0).
 
-delayT2 = [0, 1, 3, 5]
+# delayT2 = [0, 1, 3, 5]
 
 # Add delayTlist into the session_state
 if "delayTlist" not in st.session_state:
-    st.session_state.delayTlist = delayT2
+    st.session_state.delayTlist = delayTlist
     
 # Add responseSpeed into the session state
 if "responseSpeeds" not in st.session_state:

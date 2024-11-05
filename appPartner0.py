@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 
 # Streamed response emulator (generator function)
 def response_generator():
-    response = "对话结束，请返回输入暗号继续作答问卷。暗号：52013140"
+    response = "对话结束，感谢您的参与 :)"
     for word in response.split():
         yield word + " "  # yield: produce a series of values over time, rather than computing them at once and sending them back like a list.
         time.sleep(0.001)
@@ -83,10 +83,10 @@ if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign
     with st.chat_message("user", avatar=":material/account_circle:"):
         st.markdown(prompt)
      
-    col1, col2 = st.columns([3,1])  # split the container into two columns
-    with col2:
-        time.sleep(3)
-        st.status(label="已读 :white_check_mark:", state="complete", expanded=False)
+    # col1, col2 = st.columns([3,1])  # split the container into two columns
+    # with col2:
+    #     time.sleep(3)
+    #     st.status(label="已读 :white_check_mark:", state="complete", expanded=False)
         # with st.status("消息发送中...", expanded=True) as status:
         #     time.sleep(1)
         #     status.update(label="消息已送达", state="complete", expanded=True)

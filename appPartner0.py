@@ -103,7 +103,7 @@ if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign
     st.write(f"<p style='backgroud-color:gray; text-align:center; font-size:10px'> {nowT} </p>", unsafe_allow_html=True)  # Display current time
     
     # Display assistant response in chat message container
-    if len(st.session_state.messages) <= 6:  # Allow at most 20-turn conversation
+    if len(st.session_state.messages) <= 30:  # Allow at most 20-turn conversation
         with st.chat_message("assistant", avatar=":material/face:"):
             stream = client.chat.completions.create(
                 model = st.session_state["openai_model"],

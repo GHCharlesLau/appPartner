@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 
 # Streamed response emulator (generator function)
 def response_generator():
-    response = "对话结束，请返回输入暗号继续作答问卷。暗号：52013143"
+    response = "在你的手机电量耗尽之前，对方一直没有回复你。请返回输入暗号继续作答问卷。暗号：52013143"
     for word in response.split():
         yield word + " "  # yield: produce a series of values over time, rather than computing them at once and sending them back like a list.
         time.sleep(0.001)

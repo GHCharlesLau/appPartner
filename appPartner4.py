@@ -29,8 +29,8 @@ st.title("Honey >_< ")
 client = OpenAI(
     # defaults to os.environ.get("OPENAI_API_KEY")
     api_key= st.secrets["OPENAI_API_KEY2"],  # Free version: f200 requests/IP/Key/Day; KEY2: Paid version
-    # base_url = "https://api.chatanywhere.tech/v1"  # domestic
-    base_url = "https://api.chatanywhere.org/v1"  # overseas
+    base_url = "https://api.chatanywhere.tech/v1"  # domestic
+    # base_url = "https://api.chatanywhere.org/v1"  # overseas
     )
 
 
@@ -54,7 +54,8 @@ for message in st.session_state.messages[1:]:
         st.markdown(message["content"])
 
 
-delayT = random.randint(1, 3)  # randomize deplayed time interval
+# delayT = random.randint(1, 3)  # randomize deplayed time interval
+delayT = 3
 
 # Accept user input and React to the user
 if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign the user's input to the prompt variable and checked if it's not None in the same line.
@@ -68,7 +69,7 @@ if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign
      
     col1, col2 = st.columns([3,1])  # split the container into two columns
     with col2:
-        time.sleep(3)
+        time.sleep(1)
         # st.status(label="已读 :white_check_mark:", state="complete", expanded=False)
         # with st.status("消息发送中...", expanded=True) as status:
         #     time.sleep(1)
@@ -82,7 +83,7 @@ if prompt := st.chat_input("在干啥？"):  # We used the := operator to assign
     st.write(f"<p style='backgroud-color:gray; text-align:center; font-size:10px'> {nowT} </p>", unsafe_allow_html=True)  # Display current time
     
     # Display assistant response in chat message container
-    if len(st.session_state.messages) < 20:  # Allow at most 10-turn conversation
+    if len(st.session_state.messages) <= 20:  # Allow at most 10-turn conversation
         with st.chat_message("assistant", avatar=":material/face:"):
             stream = client.chat.completions.create(
                 model = st.session_state["openai_model"],
